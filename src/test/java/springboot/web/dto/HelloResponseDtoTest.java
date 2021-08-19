@@ -8,7 +8,6 @@ public class HelloResponseDtoTest {
     @Test
     public void 룸복_기능_테스트() {
         //given
-
         String name = "test";
         int amount = 1000;
 
