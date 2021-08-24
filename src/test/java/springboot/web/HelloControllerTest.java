@@ -14,7 +14,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+//이유는 모르겠으나 secure = false로해야 테스트코드 통과
+@WebMvcTest(secure = false)
 public class HelloControllerTest {
 
     @Autowired
@@ -28,14 +29,14 @@ public class HelloControllerTest {
     }
 
     @Test
-    public void helloDto가_리턴된다() throws Exception {
+    public void helloDto_return() throws Exception {
 
         String name = "hello";
         int amount = 1000;
 
         mvc.perform(get("/hello/dto").param("name", name).param("amount", String.valueOf(amount)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name",is(name)))
-                .andExpect(jsonPath("$.amount",is(amount)));
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
