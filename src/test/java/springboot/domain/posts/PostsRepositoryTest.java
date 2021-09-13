@@ -1,5 +1,6 @@
 package springboot.domain.posts;
 
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -43,5 +45,29 @@ public class PostsRepositoryTest {
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
 
+    }
+
+    @Test
+    public void BaseTimeEntity_등록()
+    {
+        //given
+        LocalDateTime now = LocalDateTime.of(2021,9,13,9,31,10);
+        postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+
+        System.out.println(">>>>>> createdDate : " + posts.getCreatedDatd()
+        + ", modifiedDate : " + posts.getModifiedDatd());
+
+        assertThat(posts.getCreatedDatd()).isAfter(now);
+        assertThat(posts.getModifiedDatd()).isAfter(now);
     }
 }
