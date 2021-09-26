@@ -22,6 +22,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model, @LoginUser SessionUser user)
     {
+        //session user 파라미터로 가져오도록 수정
         model.addAttribute("posts", postsService.findAllDesc());
 
         if(user != null) {
