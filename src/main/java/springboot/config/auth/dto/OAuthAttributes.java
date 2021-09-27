@@ -42,6 +42,7 @@ public class OAuthAttributes {
                 .build();
     }
 
+    //naver 로그인 기능 추가
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
 
