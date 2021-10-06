@@ -45,7 +45,7 @@ public class OAuthAttributes {
     //naver 로그인 기능 추가
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
         Map<String, Object> response = (Map<String, Object>) attributes.get("response");
-
+        //aws ec2 서버생성중..
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
                 .email((String) response.get("email"))
