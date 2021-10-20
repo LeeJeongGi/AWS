@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.swing.*;
 
-@EnableJpaAuditing
+
 @SpringBootApplication
 public class Application {
     public static void main(String[] args) {
